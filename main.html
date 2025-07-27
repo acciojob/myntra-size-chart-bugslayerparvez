@@ -1,97 +1,277 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<style>
-    table {
-      width: 80%;
-      border-collapse: collapse;
-      margin: 40px auto;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    thead {
-      background-color: #a94442;
-      color: white;
-    }
-
-    thead th {
-      padding: 10px;
-      border: 1px solid #8b3c3c;
-    }
-
-    tbody tr:nth-child(1) {
-      background-color: #d98880;
-    }
-
-    tbody tr:nth-child(2) {
-      background-color: #e6b0aa;
-    }
-
-    tbody tr:nth-child(3) {
-      background-color: #d5d8dc;
-    }
-
-    tbody td {
-      padding: 10px;
-      border: 1px solid #999;
-    }
-
-    tbody th {
-      text-align: left;
-      padding-left: 10px;
-    }
-  </style>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Size Chart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .size-chart {
+            padding: 30px;
+        }
+        
+        .instructions {
+            background-color: #f0f8ff;
+            border-left: 4px solid #4b6cb7;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        thead {
+            background-color: #3a539b;
+            color: white;
+        }
+        
+        th {
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #eef2f7;
+            transition: background-color 0.3s;
+        }
+        
+        tbody tr:hover {
+            background-color: #f8fbff;
+        }
+        
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+        
+        tbody tr:nth-child(odd) {
+            background-color: #f9fbfd;
+        }
+        
+        tbody tr:nth-child(odd):hover {
+            background-color: #f1f7ff;
+        }
+        
+        td {
+            padding: 16px 15px;
+            text-align: center;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        td:first-child {
+            font-weight: 600;
+            background-color: #e3ebf7;
+        }
+        
+        .size-guide {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9ff;
+            border-radius: 10px;
+            border: 1px solid #e0e8ff;
+        }
+        
+        .size-guide h3 {
+            color: #3a539b;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .tips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .tip {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+        }
+        
+        .tip h4 {
+            color: #4b6cb7;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .tip p {
+            color: #5a6b82;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #6c7a89;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            th, td {
+                padding: 14px 10px;
+                font-size: 0.95rem;
+            }
+            
+            .size-chart {
+                padding: 20px 15px;
+            }
+            
+            header {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            th, td {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .tip {
+                min-width: 100%;
+            }
+        }
+    </style>
 </head>
-
-	<table>
-		<table>
-  <thead>
-    <tr>
-      <th>Part</th>
-      <th>XS</th>
-      <th>S</th>
-      <th>M</th>
-      <th>L</th>
-      <th>XL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Waist</th>
-      <td>25</td>
-      <td>28</td>
-      <td>30</td>
-      <td>31</td>
-      <td>32</td>
-    </tr>
-    <tr>
-      <th>Chest</th>
-      <td>34</td>
-      <td>34</td>
-      <td>38</td>
-      <td>40</td>
-      <td>41</td>
-    </tr>
-    <tr>
-      <th>Sleeve</th>
-      <td>23</td>
-      <td>24</td>
-      <td>24</td>
-      <td>25</td>
-      <td>25</td>
-    </tr>
-  </tbody>
-</table>
-
-   </table>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
-
+<body>
+    <div class="container">
+        <header>
+            <h1>FASHION SIZE CHART</h1>
+            <p class="subtitle">Find your perfect fit with our comprehensive sizing guide</p>
+        </header>
+        
+        <div class="size-chart">
+            <div class="instructions">
+                <p>All measurements are in inches. For best results, measure your body and compare to the chart below.</p>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Part</th>
+                        <th>XS</th>
+                        <th>S</th>
+                        <th>M</th>
+                        <th>L</th>
+                        <th>XL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Waist</td>
+                        <td>25</td>
+                        <td>28</td>
+                        <td>30</td>
+                        <td>31</td>
+                        <td>32</td>
+                    </tr>
+                    <tr>
+                        <td>Chest</td>
+                        <td>34</td>
+                        <td>34</td>
+                        <td>38</td>
+                        <td>40</td>
+                        <td>41</td>
+                    </tr>
+                    <tr>
+                        <td>Sleeve</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>25</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="size-guide">
+                <h3>Size Selection Tips</h3>
+                <div class="tips">
+                    <div class="tip">
+                        <h4>How to Measure</h4>
+                        <p>Use a soft measuring tape around the fullest part of your chest, natural waistline, and from shoulder to wrist for sleeves.</p>
+                    </div>
+                    <div class="tip">
+                        <h4>Fit Preference</h4>
+                        <p>For a relaxed fit, select one size up. For a slim fit, stay with your regular size.</p>
+                    </div>
+                    <div class="tip">
+                        <h4>Fabric Consideration</h4>
+                        <p>Stretchy fabrics may allow for a more forgiving fit, while structured fabrics require precise measurements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Fashion Store Size Guide | Measurements may vary slightly by style</p>
+        </footer>
+    </div>
 </body>
-
 </html>
